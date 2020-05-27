@@ -1,3 +1,9 @@
+### artificial_kanye/tests/librosatest.py
+### Paweł Szczepański (Team Poznań)
+### 2020-05-27
+### This module is made to test the functionality of the pitch_shift function from librosa.
+
+
 import librosa
 import numpy as np
 import sounddevice as sd
@@ -11,24 +17,8 @@ filename = "../res/example.wav"
 # Store the sampling rate as `sr`
 y, sr = librosa.load(filename)
 
-# get the duration of the input file
-input_duration = librosa.get_duration(y, sr)
-
-#
+# pitch shift the input waveform by 4 semitones
 y_shift = librosa.effects.pitch_shift(y, sr, 4)
 
-#
-shifted_duration = librosa.get_duration(y_shift, sr)
-
-#
-y_stretch = librosa.effects.time_stretch(y, shifted_duration/input_duration)
-
-#
-stretched_duration = librosa.get_duration(y_stretch, sr)
-
-print(input_duration)
-print(shifted_duration)
-print(stretched_duration)
-
-# write file
+# write the pitch shifted waveform to file
 sf.write('test_output_file.wav', y_shift, sr, subtype='PCM_24')
