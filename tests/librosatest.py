@@ -17,8 +17,18 @@ filename = "../res/example.wav"
 # Store the sampling rate as `sr`
 y, sr = librosa.load(filename)
 
+# play loaded audio file
+sd.play(y,sr)
+# Wait until the file is done playing
+status = sd.wait()
+
 # pitch shift the input waveform by 4 semitones
 y_shift = librosa.effects.pitch_shift(y, sr, 4)
+
+# play pitch shifted audio file
+sd.play(y_shift, sr)
+# Wait until the file is done playing
+status = sd.wait()
 
 # write the pitch shifted waveform to file
 sf.write('test_output_file.wav', y_shift, sr, subtype='PCM_24')
