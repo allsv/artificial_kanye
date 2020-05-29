@@ -1,4 +1,7 @@
-##test for text to melody (mozart)
+### artificial_kanye/tests/test_tune1.py
+### Team Poznań
+### 2020-05-27
+### test for text to melody (mozart)
 
 import music
 

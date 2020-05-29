@@ -1,5 +1,5 @@
 ### artificial_kanye/tests/librosatest.py
-### Paweł Szczepański (Team Poznań)
+### Team Poznań
 ### 2020-05-27
 ### This module is made to test the functionality of the pitch_shift function from librosa.
 
