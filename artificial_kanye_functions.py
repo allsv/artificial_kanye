@@ -8,10 +8,4 @@ import librosa
 import numpy as np
 import sounddevice as sd
 
-
-def check_pitch(file):
-    y, sr = librosa.load(file)
-    return librosa.piptrack(y, sr)
-
-
 # def
