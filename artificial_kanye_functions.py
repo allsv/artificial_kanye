@@ -8,11 +8,4 @@ import librosa
 import numpy as np
 import sounddevice as sd
 
-
-
-def estimate_tuning(file):
-    y, sr = librosa.load(file)
-    return librosa.piptrack(y, sr)
-
-
 # def

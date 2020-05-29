@@ -15,20 +15,34 @@ filename = "../res/example.wav"
 
 # Load the audio as a waveform `y`
 # Store the sampling rate as `sr`
-y, sr = librosa.load(filename)
+y, sr = librosa.load(filename, sr=None)
 
-# play loaded audio file
-sd.play(y,sr)
-# Wait until the file is done playing
+# checking the type and sampling rate (just a test)
+print(type(y))
+print(sr)
+
+## we could use window functions (librosa.filters.getwindow(hann, sr//2) ?)
+
+# the following code needs to be converted into a loop and wrapped into a function
+# if we figure out window functions, we use that instead, but the general rule is the same
+
+# the first and second "half-second" of a file (calculated based on sampling rate)
+first_half_second = y[:sr//2]
+second_half_second = y[sr//2:sr]
+
+# play the combination of the above snippets
+sd.play(first_half_second+second_half_second,sr)
+# Wait until the audio is done playing
 status = sd.wait()
 
-# pitch shift the input waveform by 4 semitones
-y_shift = librosa.effects.pitch_shift(y, sr, 4)
+# pitch shift the waveform by 4 semitones
+y_shift1 = librosa.effects.pitch_shift(first_half_second, sr, 4)
+y_shift2 = librosa.effects.pitch_shift(second_half_second, sr, -4)
 
-# play pitch shifted audio file
-sd.play(y_shift, sr)
-# Wait until the file is done playing
+# play pitch shifted audio
+sd.play(y_shift1+y_shift2, sr)
+# Wait until the audio is done playing
 status = sd.wait()
 
 # write the pitch shifted waveform to file
-sf.write('test_output_file.wav', y_shift, sr, subtype='PCM_24')
+sf.write('test_output_file.wav', y_shift1+y_shift2, sr, subtype='PCM_24')
