@@ -27,8 +27,8 @@ print(sr)
 # if we figure out window functions, we use that instead, but the general rule is the same
 
 # the first and second "half-second" of a file (calculated based on sampling rate)
-def segmentation(y, sr):
 # function for isolation of "the half of a second"
+def segmentation(y, sr):
     if len(y) > sr//2:
         segment = y[:sr//2]
         return segment
@@ -36,7 +36,9 @@ def segmentation(y, sr):
         return y
 
 
-
+# the first and second "half-second" of a file (calculated based on sampling rate)
+first_half_second = y[:sr//2]
+second_half_second = y[sr//2:sr]
 
 # play the combination of the above snippets
 sd.play(first_half_second+second_half_second,sr)
