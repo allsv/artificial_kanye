@@ -30,7 +30,7 @@ print(sr)
 # function for isolation of "the half of a second"
 def segmentation(y, sr):
     if len(y) > sr//2:
-        segment = y[sr//2:]
+        segment = y[:sr//2]
         return segment
     else:
         return y
