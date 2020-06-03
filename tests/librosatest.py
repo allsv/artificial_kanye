@@ -35,8 +35,15 @@ def segmentation(y, sr):
     else:
         return y
 #place for another function to create a list adding elements created in the last function and looping them
+#aforementioned function, although not working as it should at the moment:
+#def list_segments(filename):
+   # y, sr = librosa.load(filename, sr=None)
+   #segment_list = []
+   # segment_list.append(segmentation(y,sr))
+    #return segment_list
 
-#def list_segments():
+
+#outcome = list_segments(filename)
     
 
 # the first and second "half-second" of a file (calculated based on sampling rate)
