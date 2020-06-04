@@ -15,4 +15,3 @@ sd.wait()
 
 #saving the recorded audio file
 write('recording_output.wav', recording_rate, recording)
-
