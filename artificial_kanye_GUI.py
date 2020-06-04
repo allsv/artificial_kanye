@@ -194,12 +194,12 @@ voice_recording_button.pack(side = RIGHT)
 
 #making a volume control slider
 volume_control_slider = Scale(sliders, from_=10, to = 1, command = change_volume, label = "Volume")
-volume_control_slider.set(5)
+volume_control_slider.set(8)
 volume_control_slider.grid(row=0, column=0)
 
 #making a pitch control slider
-pitch_control_slider = Scale(sliders, from_= 10, to = 1, command = change_pitch, label = "Pitch")
-pitch_control_slider.set(5)
+pitch_control_slider = Scale(sliders, from_= 10, to = -10, command = change_pitch, label = "Pitch")
+pitch_control_slider.set(0)
 pitch_control_slider.grid(row=0, column=1)
 
 #making an audio file loading button
