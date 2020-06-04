@@ -51,8 +51,10 @@ def list_segments(y, sr):
         y = y[sr//2:]
     return segment_list
 
-print(list_segments(y,sr))
 
+print(y)
+print(type(y))
+print(y.shape())
 
 # the first and second "half-second" of a file (calculated based on sampling rate)
 first_half_second = y[:sr//2]

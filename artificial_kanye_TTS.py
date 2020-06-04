@@ -1,5 +1,5 @@
 from gtts import gTTS
-import os.path
+
 
 
 def kanye_text_to_speech(text_string, filename, language = 'pl'):
