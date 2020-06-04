@@ -11,7 +11,7 @@ import soundfile as sf
 
 
 # get the example audio file
-filename = "../res/example.wav"
+filename = "../res/sound/example.wav"
 
 # Load the audio as a waveform `y`
 # Store the sampling rate as `sr`
@@ -42,9 +42,17 @@ def segmentation(y, sr):
    # segment_list.append(segmentation(y,sr))
     #return segment_list
 
+def list_segments(y, sr):
+    number_of_segments = len(y)//(sr//2) + 1
+    segment_list = []
+    for i in range(number_of_segments):
+        segment = segmentation(y, sr)
+        segment_list.append(segment)
+        y = y[sr//2:]
+    return segment_list
 
-#outcome = list_segments(filename)
-    
+print(list_segments(y,sr))
+
 
 # the first and second "half-second" of a file (calculated based on sampling rate)
 first_half_second = y[:sr//2]
