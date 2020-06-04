@@ -15,7 +15,14 @@ import artificial_kanye_TTS as aktts
 
 #some functions made just to test if the buttons are working properly
 def play_audio_file():
-    print("Play")
+    if not pitch_shifting_applied:
+        src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
+        y_src, sr_src = akf.load_file(src_file)
+        akf.playback(y_src, sr_src)
+    else:
+        src_file = os.path.join('res','output','output.wav')
+        y_src_pitch, sr_src_pitch = akf.load_file(src_file)
+        akf.playback(y_src_pitch, sr_src_pitch)
 
 # def pause_audio_file():
 #     print("Pause")
@@ -98,11 +105,14 @@ def record_voice():
     save_button.grid(row=3, column=0, columnspan = 2, sticky=W+E+N+S, padx=2, pady=2)
 
 def apply_pitch_shift():
+    global pitch_shifting_applied
     src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
     y, sr = akf.load_file(src_file)
     y_shift, sr = akf.pitch_shifted_file(y,sr,int(pitch_control_slider.get()))
     output_file_dir = os.path.join('res', 'output', 'output.wav')
     sf.write(output_file_dir, y_shift, sr, subtype='PCM_24')
+    print(sr)
+    pitch_shifting_applied = True
 
 
 def close_the_window():
@@ -112,6 +122,9 @@ def close_the_window():
 
 #making the window of our program
 program_window = Tk()
+
+# variable to test if pitch shifting has been done
+pitch_shifting_applied = False
 
 #setting the window's name
 program_window.title("Artificial Kanye")
@@ -196,7 +209,7 @@ file_loading_button.pack(side = TOP)
 
 #making a listbox frame
 listbox_frame = Frame(program_window)
-listbox_frame.place(relx=0.3, rely=0.67, anchor=CENTER)
+listbox_frame.place(relx=0.2, rely=0.67, anchor=CENTER)
 
 #making a scrollbar for the listbox
 scrollbar = Scrollbar(listbox_frame, orient=VERTICAL)
@@ -215,11 +228,11 @@ for soundfile in soundfiles:
     audio_files_listbox.insert(END, soundfile)
 
 #making a listbox for melodies
-melody_listbox = Listbox(listbox_frame)
-melody_listbox.pack(side=RIGHT)
+# melody_listbox = Listbox(listbox_frame)
+# melody_listbox.pack(side=RIGHT)
 
 #insert option to randomize "melody"
-melody_listbox.insert(END, "Random")
+# melody_listbox.insert(END, "Random")
 
 #button to apply pitch shift
 ps_button = Button(sliders, text= "Apply", command=apply_pitch_shift)

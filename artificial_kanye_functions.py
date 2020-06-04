@@ -36,6 +36,7 @@ def list_segments(y, sr):
 
 def pitch_shifted_file(y,sr,pitch):
     segments_original = list_segments(y,sr)
+    segments_original = segments_original[:-1]
     y_shift = librosa.effects.pitch_shift(segments_original[0], sr, pitch+random.randint(-5,5))
     for segment in segments_original[1:]:
         segment = librosa.effects.pitch_shift(segment, sr, pitch+random.randint(-5,5))
