@@ -4,5 +4,6 @@
 ### The main artificial_kanye module
 
 
-import artificial_kanye_functions as akf
-import sounddevice as sd
+import artificial_kanye_GUI
+
+artificial_kanye_GUI.start_GUI()
