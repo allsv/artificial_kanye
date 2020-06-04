@@ -27,13 +27,13 @@ print(sr)
 # if we figure out window functions, we use that instead, but the general rule is the same
 
 # the first and second "half-second" of a file (calculated based on sampling rate)
-def segmentation(y, sr):
-# function for isolation of "the half of a second"
-    if len(y) > sr//2:
-        segment = y[:sr//2]
-        return segment
-    else:
-        return y
+# def segmentation(y, sr):
+# # function for isolation of "the half of a second"
+#     if len(y) > sr//2:
+#         segment = y[:sr//2]
+#         return segment
+#     else:
+#         return y
 #place for another function to create a list adding elements created in the last function and looping them
 #aforementioned function, although not working as it should at the moment:
 #def list_segments(filename):
@@ -42,19 +42,19 @@ def segmentation(y, sr):
    # segment_list.append(segmentation(y,sr))
     #return segment_list
 
-def list_segments(y, sr):
-    number_of_segments = len(y)//(sr//2) + 1
-    segment_list = []
-    for i in range(number_of_segments):
-        segment = segmentation(y, sr)
-        segment_list.append(segment)
-        y = y[sr//2:]
-    return segment_list
-
-
-print(y)
-print(type(y))
-print(y.shape())
+# def list_segments(y, sr):
+#     number_of_segments = len(y)//(sr//2) + 1
+#     segment_list = []
+#     for i in range(number_of_segments):
+#         segment = segmentation(y, sr)
+#         segment_list.append(segment)
+#         y = y[sr//2:]
+#     return segment_list
+#
+#
+# print(y)
+# print(type(y))
+# print(y.shape())
 
 # the first and second "half-second" of a file (calculated based on sampling rate)
 first_half_second = y[:sr//2]

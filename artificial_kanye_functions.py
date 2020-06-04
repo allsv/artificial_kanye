@@ -35,11 +35,11 @@ def list_segments(y, sr):
     return segment_list
 
 def pitch_shifted_file(y,sr,pitch):
-    segments_original = list_segments(y,sr)
-    segments_original = segments_original[:-1]
-    y_shift = librosa.effects.pitch_shift(segments_original[0], sr, pitch+random.randint(-5,5))
-    for segment in segments_original[1:]:
-        segment = librosa.effects.pitch_shift(segment, sr, pitch+random.randint(-5,5))
+    segments_original = list_segments(y,sr) # cut into segments
+    segments_original = segments_original[:-1] # cut the last segment, this is TEMPORARY, it throws an error
+    y_shift = librosa.effects.pitch_shift(segments_original[0], sr, pitch+random.randint(-5,5)) # assign first segment
+    for segment in segments_original[1:]: # add the rest of the segments
+        segment = librosa.effects.pitch_shift(segment, sr, pitch+random.randint(-2,2))
         y_shift += segment
     return y_shift,sr
 
@@ -48,7 +48,7 @@ def playback(y,sr):
     sd.wait() # wait until done playing
 
 def stop_playback():
-    sd.stop()
+    sd.stop() # stop playback
 
 def record_audio_file(filename, rate, length):
     #recording audio file

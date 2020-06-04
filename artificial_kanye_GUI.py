@@ -42,6 +42,7 @@ def copy_audio_file():
     source_file = filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("wav files","*.wav"),("ogg files","*.ogg")))
     directory = os.path.join('res', 'sound')
     shutil.copy(source_file, directory)
+    #repopulate file listbox
     audio_files_listbox.delete(0, END)
     soundfiles_directory = os.path.join('res','sound')
     soundfiles_all = os.listdir(soundfiles_directory)
@@ -73,6 +74,7 @@ def save_tts_file(text, filename):
         aktts.kanye_text_to_speech(text, "text_to_speech_output")
     else:
         aktts.kanye_text_to_speech(text, filename)
+    #repopulate file listbox
     audio_files_listbox.delete(0, END)
     soundfiles_directory = os.path.join('res','sound')
     soundfiles_all = os.listdir(soundfiles_directory)
@@ -193,15 +195,15 @@ voice_recording_button.pack(side = RIGHT)
 #making a volume control slider
 volume_control_slider = Scale(sliders, from_=10, to = 1, command = change_volume, label = "Volume")
 volume_control_slider.set(5)
-volume_control_slider.pack(side = LEFT)
+volume_control_slider.grid(row=0, column=0)
 
 #making a pitch control slider
 pitch_control_slider = Scale(sliders, from_= 10, to = 1, command = change_pitch, label = "Pitch")
 pitch_control_slider.set(5)
-pitch_control_slider.pack(side = LEFT)
+pitch_control_slider.grid(row=0, column=1)
 
 #making an audio file loading button
-file_loading_button = Button(file_buttons, text = "Upload an audio file from your computer", command = copy_audio_file)
+file_loading_button = Button(file_buttons, text = "Import an audio file from your computer", command = copy_audio_file)
 file_loading_button.pack(side = TOP)
 
 file_loading_button = Button(file_buttons, text = "Text-to-speech", command = open_tts_dialog)
@@ -236,7 +238,8 @@ for soundfile in soundfiles:
 
 #button to apply pitch shift
 ps_button = Button(sliders, text= "Apply", command=apply_pitch_shift)
-ps_button.pack(side=BOTTOM)
+ps_button.grid(row=1, column=0, columnspan=2, sticky=W+E+N+S)
+ps_button.config(width = 20 )
 
 #closing the program when closing the window
 program_window.protocol("WM_DELETE_WINDOW", close_the_window)
