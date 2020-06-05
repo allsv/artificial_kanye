@@ -37,15 +37,15 @@ def list_segments(y, sr):
 def pitch_shifted_file(y,sr,pitch):
     segments_original = list_segments(y,sr) # cut into segments
     segments_original = segments_original[:-1] # cut the last segment, this is TEMPORARY, it throws an error
-    y_shift = librosa.effects.pitch_shift(segments_original[0], sr, pitch+random.randint(-5,5)) # assign first segment
-    for segment in segments_original[1:]: # add the rest of the segments
+    y_shift = np.ndarray()
+    for segment in segments_original: # add the segments
         segment = librosa.effects.pitch_shift(segment, sr, pitch+random.randint(-2,2))
         y_shift += segment
     return y_shift,sr
 
 def playback(y,sr):
     sd.play(y,sr) # play audio
-    sd.wait() # wait until done playing
+    #sd.wait() # wait until done playing
 
 def stop_playback():
     sd.stop() # stop playback
