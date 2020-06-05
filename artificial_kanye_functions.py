@@ -37,7 +37,7 @@ def list_segments(y, sr):
 def pitch_shifted_file(y,sr,pitch):
     segments_original = list_segments(y,sr) # cut into segments
     segments_original = segments_original[:-1] # cut the last segment, this is TEMPORARY, it throws an error
-    y_shift = np.ndarray()
+    y_shift = np.ndarray(shape=sr//2)
     for segment in segments_original: # add the segments
         segment = librosa.effects.pitch_shift(segment, sr, pitch+random.randint(-2,2))
         y_shift += segment

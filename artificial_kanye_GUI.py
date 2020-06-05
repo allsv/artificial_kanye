@@ -12,6 +12,7 @@ import shutil
 import soundfile as sf
 import artificial_kanye_functions as akf
 import artificial_kanye_TTS as aktts
+import VolumeControl
 
 #some functions made just to test if the buttons are working properly
 def play_audio_file():
@@ -32,7 +33,9 @@ def stop_audio_file():
     akf.stop_playback()
 
 def change_volume(volume):
-    print(volume)
+    audio_controller = VolumeControl.AudioController('python.exe')
+    volume_value = float(volume) * 0.1
+    audio_controller.set_volume(volume_value)
 
 def change_pitch(pitch):
     print(pitch)
@@ -193,8 +196,8 @@ voice_recording_button = Button(playback_buttons, image = mic_image, command = r
 voice_recording_button.pack(side = RIGHT)
 
 #making a volume control slider
-volume_control_slider = Scale(sliders, from_=10, to = 1, command = change_volume, label = "Volume")
-volume_control_slider.set(8)
+volume_control_slider = Scale(sliders, from_=10, to = 0, command = change_volume, label = "Volume")
+volume_control_slider.set(5)
 volume_control_slider.grid(row=0, column=0)
 
 #making a pitch control slider
@@ -238,8 +241,8 @@ for soundfile in soundfiles:
 
 #button to apply pitch shift
 ps_button = Button(sliders, text= "Apply", command=apply_pitch_shift)
-ps_button.grid(row=1, column=0, columnspan=2, sticky=W+E+N+S)
-ps_button.config(width = 20 )
+ps_button.grid(row=1, column=0, columnspan=2, sticky=W+N+S, padx=17)
+ps_button.config(width = 15 )
 
 #closing the program when closing the window
 program_window.protocol("WM_DELETE_WINDOW", close_the_window)
