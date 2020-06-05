@@ -17,11 +17,11 @@ import VolumeControl
 #some functions made just to test if the buttons are working properly
 # plays the audio file
 def play_audio_file():
-    if not pitch_shifting_applied:
+    if not pitch_shifting_applied: #pitch not applied 
         src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
         y_src, sr_src = akf.load_file(src_file)
         akf.playback(y_src, sr_src)
-    else:
+    else: #with pitch applied
         src_file = os.path.join('res','output','output.wav')
         y_src_pitch, sr_src_pitch = akf.load_file(src_file)
         akf.playback(y_src_pitch, sr_src_pitch)
@@ -77,7 +77,7 @@ def open_tts_dialog():
     filename_entry.grid(row = 1, column = 1)
     save_button.grid(row = 2, column = 0, columnspan=2, sticky=W+E+N+S, padx=2, pady=2)
 
-
+# saving TTS file
 def save_tts_file(text, filename):
     if filename == "(default)":
         aktts.kanye_text_to_speech(text, "text_to_speech_output")
@@ -133,7 +133,7 @@ def apply_pitch_shift():
 def close_the_window():
     stop_audio_file()
     program_window.destroy()
-
+#resetting audio file to its original shape (without the change in pitch)
 def reset_file():
     global pitch_shifting_applied
     pitch_shifting_applied = False
