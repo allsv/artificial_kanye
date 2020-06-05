@@ -37,7 +37,7 @@ def stop_audio_file():
 # volume control
 def change_volume(volume):
     audio_controller = VolumeControl.AudioController('python.exe')
-    volume_value = float(volume) * 0.1
+    volume_value = float(volume) * 0.1 
     audio_controller.set_volume(volume_value)
 
 # pitch control
@@ -95,6 +95,7 @@ def save_tts_file(text, filename):
 
 #letting the user record their own audio file
 def record_voice():
+    #buttons making up the interface that allows the user recording of the audiofile
     record_window = Toplevel(program_window)
     record_window.title("Record audio")
     icon_filename = os.path.join('res','img','kanye_license_icon.ico')
@@ -119,6 +120,7 @@ def record_voice():
     
 #applying chosen pitch on the original audio
 def apply_pitch_shift():
+    #joining pitch button with the shifting pitch function
     global pitch_shifting_applied
     src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
     y, sr = akf.load_file(src_file)
