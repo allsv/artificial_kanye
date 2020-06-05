@@ -38,7 +38,7 @@ def change_volume(volume):
     audio_controller.set_volume(volume_value)
 
 def change_pitch(pitch):
-    print(pitch)
+    print("Pitch:", str(pitch))
 
 # copies the file into the resource folder and repopulates the files listbox
 def copy_audio_file():
@@ -47,11 +47,13 @@ def copy_audio_file():
     shutil.copy(source_file, directory)
     #repopulate file listbox
     audio_files_listbox.delete(0, END)
+    print("Repopulating file listbox")
     soundfiles_directory = os.path.join('res','sound')
     soundfiles_all = os.listdir(soundfiles_directory)
     soundfiles = [filename for filename in soundfiles_all if re.search(r'.+(\.wav$|\.ogg$)', filename)]
     for soundfile in soundfiles:
         audio_files_listbox.insert(END, soundfile)
+        print(soundfile,"added to file listbox")
 
 # creates a new window with TTS functions
 def open_tts_dialog():
@@ -79,11 +81,13 @@ def save_tts_file(text, filename):
         aktts.kanye_text_to_speech(text, filename)
     #repopulate file listbox
     audio_files_listbox.delete(0, END)
+    print("Repopulating file listbox")
     soundfiles_directory = os.path.join('res','sound')
     soundfiles_all = os.listdir(soundfiles_directory)
     soundfiles = [filename for filename in soundfiles_all if re.search(r'.+(\.wav$|\.ogg$)', filename)]
     for soundfile in soundfiles:
         audio_files_listbox.insert(END, soundfile)
+        print(soundfile,"added to file listbox")
 
 
 def record_voice():
