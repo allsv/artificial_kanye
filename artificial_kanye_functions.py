@@ -11,7 +11,7 @@ import os
 import random
 from scipy.io.wavfile import write as scipy_write
 
-#
+# fucntion for the upload of the sound file
 def load_file(filename):
     y, sr = librosa.load(filename, sr=None)
     return y, sr
