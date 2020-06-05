@@ -59,7 +59,7 @@ def copy_audio_file():
         audio_files_listbox.insert(END, soundfile)
         print(soundfile,"added to file listbox")
 
-# creates a new window with TTS functions
+# creates a new window with TTS dialogue
 def open_tts_dialog():
     tts_window = Toplevel(program_window)
     tts_window.title("Text-to-speech")
@@ -133,7 +133,8 @@ def apply_pitch_shift():
 def close_the_window():
     stop_audio_file()
     program_window.destroy()
-#resetting audio file to its original shape (without the change in pitch)
+
+#resetting audio file to its original shape (without the change in the pitch)
 def reset_file():
     global pitch_shifting_applied
     pitch_shifting_applied = False
