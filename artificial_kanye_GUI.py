@@ -198,6 +198,12 @@ stop_image = PhotoImage(file = stop_image_filename)
 stop_button = Button(playback_buttons, image = stop_image, command = stop_audio_file)
 stop_button.pack(side = LEFT)
 
+#making a save file button
+save_image_filename = os.path.join('res','img','save.png')
+save_image = PhotoImage(file = save_image_filename)
+save_button = Button(playback_buttons, image = save_image, command = save_audio_file)
+save_button.pack(side = LEFT)
+
 #making a button for voice recording
 mic_image_filename = os.path.join('res','img','microphone.png')
 mic_image = PhotoImage(file = mic_image_filename)
