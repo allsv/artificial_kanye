@@ -16,7 +16,7 @@ def load_file(filename):
     y, sr = librosa.load(filename, sr=None)
     return y, sr
 
-# function for isolation of "the half of a second"
+# function for isolation of the half of a second long segments
 def segmentation(y, sr):
     if len(y) > sr//2:
         segment = y[:sr//2]
