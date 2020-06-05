@@ -117,16 +117,21 @@ def apply_pitch_shift():
     global pitch_shifting_applied
     src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
     y, sr = akf.load_file(src_file)
-    y_shift, sr = akf.pitch_shifted_file(y,sr,int(pitch_control_slider.get()))
+    y_shift, sr_shift = akf.pitch_shifted_file(y,sr,int(pitch_control_slider.get()))
+    print("apply_pitch_shift - y_shift:",y_shift)
+    print("apply_pitch_shift - sr_shift:",sr_shift)
     output_file_dir = os.path.join('res', 'output', 'output.wav')
-    sf.write(output_file_dir, y_shift, sr, subtype='PCM_24')
-    print(sr)
+    sf.write(output_file_dir, y_shift, sr_shift, subtype='PCM_24')
     pitch_shifting_applied = True
 
 
 def close_the_window():
     stop_audio_file()
     program_window.destroy()
+
+def reset_file():
+    global pitch_shifting_applied
+    pitch_shifting_applied = False
 
 
 #making the window of our program
@@ -228,6 +233,7 @@ audio_files_listbox = Listbox(listbox_frame, yscrollcommand=scrollbar.set)
 audio_files_listbox.pack(side = LEFT)
 scrollbar.config(command=audio_files_listbox.yview)
 scrollbar.pack(side=RIGHT, fill=Y)
+audio_files_listbox.bind('<<ListboxSelect>>', reset_file)
 
 #inserting audio files from the resource folder to the listbox
 soundfiles_directory = os.path.join('res','sound')
