@@ -15,6 +15,7 @@ import artificial_kanye_TTS as aktts
 import VolumeControl
 
 #some functions made just to test if the buttons are working properly
+# plays the audio file
 def play_audio_file():
     if not pitch_shifting_applied:
         src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
@@ -29,14 +30,17 @@ def play_audio_file():
 #     print("Pause")
 # Pausing doesn't work for now
 
+# stopping playing the audio file
 def stop_audio_file():
     akf.stop_playback()
 
+# volume control
 def change_volume(volume):
     audio_controller = VolumeControl.AudioController('python.exe')
     volume_value = float(volume) * 0.1
     audio_controller.set_volume(volume_value)
 
+# pitch control
 def change_pitch(pitch):
     print("Pitch:", str(pitch))
 
@@ -89,7 +93,7 @@ def save_tts_file(text, filename):
         audio_files_listbox.insert(END, soundfile)
         print(soundfile,"added to file listbox")
 
-
+#letting the user record their own audio file
 def record_voice():
     record_window = Toplevel(program_window)
     record_window.title("Record audio")
@@ -112,7 +116,8 @@ def record_voice():
     record_length_label.grid(row=2,column=0, sticky=W)
     record_length.grid(row=2,column=1)
     save_button.grid(row=3, column=0, columnspan = 2, sticky=W+E+N+S, padx=2, pady=2)
-
+    
+#applying chosen pitch on the original audio
 def apply_pitch_shift():
     global pitch_shifting_applied
     src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
