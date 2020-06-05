@@ -17,7 +17,7 @@ import VolumeControl
 #some functions made just to test if the buttons are working properly
 # plays the audio file
 def play_audio_file():
-    if not pitch_shifting_applied: #pitch not applied 
+    if not pitch_shifting_applied: #pitch not applied
         src_file = os.path.join('res','sound',audio_files_listbox.get(audio_files_listbox.curselection()))
         y_src, sr_src = akf.load_file(src_file)
         akf.playback(y_src, sr_src)
@@ -37,7 +37,7 @@ def stop_audio_file():
 # volume control
 def change_volume(volume):
     audio_controller = VolumeControl.AudioController('python.exe')
-    volume_value = float(volume) * 0.1 
+    volume_value = float(volume) * 0.1
     audio_controller.set_volume(volume_value)
 
 # pitch control
@@ -58,6 +58,11 @@ def copy_audio_file():
     for soundfile in soundfiles:
         audio_files_listbox.insert(END, soundfile)
         print(soundfile,"added to file listbox")
+
+def save_audio_file():
+    directory = filedialog.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("wav files","*.wav"),("ogg files","*.ogg")))
+    outfile = os.path.join('res','output','output.wav')
+    shutil.move(outfile, directory)
 
 # creates a new window with TTS dialogue
 def open_tts_dialog():
@@ -118,7 +123,7 @@ def record_voice():
     record_length_label.grid(row=2,column=0, sticky=W)
     record_length.grid(row=2,column=1)
     save_button.grid(row=3, column=0, columnspan = 2, sticky=W+E+N+S, padx=2, pady=2)
-    
+
 #applying chosen pitch on the original audio
 def apply_pitch_shift():
     #joining pitch button with the shifting pitch function
