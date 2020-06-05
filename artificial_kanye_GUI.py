@@ -70,6 +70,7 @@ def open_tts_dialog():
     filename_entry_label = Label(tts_window, text="Choose filename (can leave default):")
     filename_entry = Entry(tts_window)
     filename_entry.insert(END, "(default)")
+    # making save button
     save_button = Button(tts_window, text="Save", command = lambda:save_tts_file(text_entry.get(), filename_entry.get()))
     text_entry_label.grid(row = 0, column = 0, sticky=W)
     text_entry.grid(row = 0, column = 1)
@@ -191,7 +192,7 @@ sliders.place(relx=0.8, rely=0.67, anchor=CENTER)
 play_image_filename = os.path.join('res','img','play.png')
 play_image = PhotoImage(file = play_image_filename)
 play_button = Button(playback_buttons, image = play_image, command = play_audio_file)
-play_button.pack(side = LEFT)
+play_button.pack(side = LEFT)#postitioning the play button
 
 # making a pause button
 # pause_image_filename = os.path.join('res','img','pause.png')
@@ -225,8 +226,8 @@ volume_control_slider.grid(row=0, column=0)
 
 #making a pitch control slider
 pitch_control_slider = Scale(sliders, from_= 10, to = -10, command = change_pitch, label = "Pitch")
-pitch_control_slider.set(0)
-pitch_control_slider.grid(row=0, column=1)
+pitch_control_slider.set(0)#starting position of the slider
+pitch_control_slider.grid(row=0, column=1)#positioning the slader
 
 #making an audio file loading button
 file_loading_button = Button(file_buttons, text = "Import an audio file from your computer", command = copy_audio_file)
@@ -237,7 +238,7 @@ file_loading_button.pack(side = TOP)
 
 #making a listbox frame
 listbox_frame = Frame(program_window)
-listbox_frame.place(relx=0.2, rely=0.67, anchor=CENTER)
+listbox_frame.place(relx=0.2, rely=0.67, anchor=CENTER)#postioning the listbox frame
 
 #making a scrollbar for the listbox
 scrollbar = Scrollbar(listbox_frame, orient=VERTICAL)
@@ -265,7 +266,7 @@ for soundfile in soundfiles:
 
 #button to apply pitch shift
 ps_button = Button(sliders, text= "Apply", command=apply_pitch_shift)
-ps_button.grid(row=1, column=0, columnspan=2, sticky=W+N+S, padx=17)
+ps_button.grid(row=1, column=0, columnspan=2, sticky=W+N+S, padx=17) #positioning the button
 ps_button.config(width = 15 )
 
 #closing the program when closing the window
